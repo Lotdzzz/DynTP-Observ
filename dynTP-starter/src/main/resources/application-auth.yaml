@@ -1,0 +1,12 @@
+web:
+  jwt:
+    #设置jwt签名加密秘钥
+    secret-key: ${DO_SECRET_KEY}
+    #设置过期时间 单位分钟
+    ttl: 360
+    #设置前端发送请求请求头中存储jwt的字段
+    token-name: authorization
+    #jwt生成的前缀默认的 后端解析时需要去掉
+    prefix: Bearer
+    # 设置伪造回调标志的过期时间 单位分钟
+    state-ttl: 5

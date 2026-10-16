@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>dynTP-common</module>
+        <module>dynTP-starter</module>
+        <module>dynTP-framework</module>
+        <module>dynTP-system-service</module>
+        <module>dynTP-observ-service</module>
+        <module>dynTP-monitor</module>
+    </modules>
+
+    <groupId>com.dotm</groupId>
+    <artifactId>DynTP-Observ</artifactId>
+    <version>1.0.0</version>
+    <description>Dynamic ThreadPool And JVM Observability Platform</description>
+
+    <properties>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <jdk.version>21</jdk.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.parameters>true</maven.compiler.parameters>
+        <spring-boot.version>4.0.7</spring-boot.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
+        <jwt.version>0.13.0</jwt.version>
+        <lombok.version>1.18.46</lombok.version>
+        <mybatisplus.version>3.5.17</mybatisplus.version>
+        <druid.version>1.2.28</druid.version>
+        <dotm.version>1.0.0</dotm.version>
+        <minio.version>8.6.0</minio.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!--MinIO-->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+
+            <!-- dynTP-monitor-api -->
+            <dependency>
+                <groupId>com.dotm</groupId>
+                <artifactId>dynTP-monitor-api</artifactId>
+                <version>${dotm.version}</version>
+            </dependency>
+
+            <!-- dynTP-monitor-client -->
+            <dependency>
+                <groupId>com.dotm</groupId>
+                <artifactId>dynTP-monitor-client</artifactId>
+                <version>${dotm.version}</version>
+            </dependency>
+
+            <!-- observ service -->
+            <dependency>
+                <groupId>com.dotm</groupId>
+                <artifactId>dynTP-observ-service</artifactId>
+                <version>${dotm.version}</version>
+            </dependency>
+
+            <!-- system service -->
+            <dependency>
+                <groupId>com.dotm</groupId>
+                <artifactId>dynTP-system-service</artifactId>
+                <version>${dotm.version}</version>
+            </dependency>
+
+            <!-- project framework -->
+            <dependency>
+                <groupId>com.dotm</groupId>
+                <artifactId>dynTP-framework</artifactId>
+                <version>${dotm.version}</version>
+            </dependency>
+
+            <!-- dynTP-common -->
+            <dependency>
+                <groupId>com.dotm</groupId>
+                <artifactId>dynTP-common</artifactId>
+                <version>${dotm.version}</version>
+            </dependency>
+
+            <!-- Apache Commons Lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+            <!--jwt 依赖-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jwt.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jwt.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <!--mp-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot4-starter</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+
+            <!--翻页插件-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-jsqlparser</artifactId>
+                <version>${mybatisplus.version}</version>
+            </dependency>
+
+            <!--德鲁伊连接池-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-4-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!--lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <!-- 管理 Spring Boot、Spring Framework、Spring Security 等 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!--参数名匹配插件 让接口的参数名直接匹配请求的参数名-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
+                    <parameters>${maven.compiler.parameters}</parameters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

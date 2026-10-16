@@ -1,0 +1,18 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB    # 整个请求最大大小，包含所有文件和表单字段
+upload:
+  white:
+    list:
+      - jpg
+      - jpeg
+      - png
+    dir: /uploadDir
+minio:
+  endpoint: ${DO_MINIO_ENDPOINT}  # MinIO 服务地址
+  access-key: ${DO_MINIO_ACCESS_KEY}      # Access Key
+  secret-key: ${DO_MINIO_SECRET_KEY}      # Secret Key
+  avatar-upload-bucket-name: avatar-upload    # 默认使用的存储桶名称
+  expiry-time: 5 # 用于获取预签名url的持续时间 单元为分钟
