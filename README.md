@@ -16,7 +16,27 @@ DynTP-Observ 是一个面向分布式业务系统的线程池可观测平台。�
 - 认证日志：记录登录认证相关日志；管理端支持分页查看、查看详情、单个删除和批量删除。
 - 管理端界面：提供响应式后台布局、可折叠侧边栏、面包屑导航及首页概览页面。
 
-## 技术栈
+## 核心技术栈
+
+DynTP-Observ 围绕线程池的发现、监控、诊断、动态调参与告警构建。下表列出了项目涉及的核心技术方向、关键组件及其在平台中的作用。
+
+| 技术方向 | 核心技术 | 说明 | 优先级 |
+| --- | --- | --- | --- |
+| JUC 并发编程 | `ThreadPoolExecutor`、AQS、`BlockingQueue`、Atomic | 理解线程池运行原理，实现指标采集、拒绝监控和动态调参。 | 必须 |
+| JVM | 线程模型、Thread Dump、JMX、JFR、GC | 分析线程阻塞、死锁、CPU 异常及 JVM 运行状态。 | 重要 |
+| Spring 生态 | Spring Boot、Starter、AutoConfiguration、BeanPostProcessor | 开发监控 SDK，实现业务项目自动接入与线程池发现。 | 必须 |
+| 可观测性·指标 | Micrometer、Prometheus | 采集、暴露和存储线程池运行指标及历史数据。 | 必须 |
+| 可观测性·日志 | SLF4J、Logback、Loki | 记录任务异常、拒绝事件、配置变更等信息。 | 重要 |
+| 可观测性·链路 | OpenTelemetry、Jaeger、Trace Context | 追踪异步任务执行链路，分析任务排队及执行耗时。 | 进阶 |
+| 可观测性·可视化 | Grafana、ECharts | 展示实时指标、历史趋势和线程池运行状态。 | 必须 |
+| 分布式系统 | HTTP/gRPC、心跳机制、服务注册、配置推送 | 实现多服务实例管理、状态同步和远程动态调参。 | 必须 |
+| 数据存储 | MySQL、Redis、Prometheus TSDB | 存储实例配置、告警规则、缓存数据及历史指标。 | 重要 |
+| 告警系统 | Prometheus Alertmanager、自定义规则引擎 | 监测线程池饱和、队列积压、任务拒绝并触发告警。 | 重要 |
+| Java Agent | Instrumentation、Byte Buddy、ASM | 通过字节码增强实现非 Spring 线程池的低侵入监控。 | 进阶 |
+| 前端开发 | Vue 3、TypeScript、Element Plus、ECharts | 开发线程池监控大盘、实例管理和告警控制台。 | 必须 |
+| 部署运维 | Docker、Docker Compose、Linux、Kubernetes | 部署监控平台，实现容器化与多实例运行。 | 重要 |
+
+### 当前基础技术选型
 
 | 分类 | 技术 |
 | --- | --- |
